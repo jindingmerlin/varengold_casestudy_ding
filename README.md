@@ -13,7 +13,7 @@ snippets as well as a database and one CSV file, that should get you going very 
 prior knowledge, we estimate a working effort of
 2h - 4h.
 
-The goal of this test is to evaluate your understanding of SQL, dbt and data modeling concepts.
+The goal of this test is to evaluate your understanding of dbt, SQL and your data visualization skills.
 
 Once you feel ready - please not later than one day before your second interview - send us a link to your own
 repository. In the interview, you will guide us briefly through your work. Your participation is very much appreciated!
