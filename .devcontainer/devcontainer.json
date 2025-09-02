@@ -1,0 +1,86 @@
+// For format details, see https://aka.ms/devcontainer.json. For config options, see the
+// README at: https://github.com/devcontainers/templates/tree/main/src/postgres
+{
+  "name": "Python 3 & PostgreSQL",
+  "dockerComposeFile": "docker-compose.yml",
+  "service": "casestudy",
+  "workspaceFolder": "/workspaces/data-analyst-casestudy",
+  // Features to add to the dev container. More info: https://containers.dev/features.
+  // "features": {},
+
+  // Use 'forwardPorts' to make a list of ports inside the container available locally.
+  // This can be used to network with other containers or the host.
+  "forwardPorts": [
+//    5000,
+    5432
+  ],
+  // Use 'postCreateCommand' to run commands after the container is created.
+  // "postCreateCommand": "pip install --user -r requirements.txt",
+
+  // Configure tool-specific properties.
+  // "customizations": {},
+
+  // Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
+  // "remoteUser": "root",
+  
+  "remoteUser": "root",
+  "overrideCommand": false,
+  "containerUser": "root",
+  "init": true,
+
+  "customizations": {
+    "jetbrains": {
+      "settings": {
+        "com.intellij:app:BaseRefactoringSettings.safe_delete_when_delete": false,
+        "com.intellij:app:BaseRefactoringSettings.rename_search_in_comments_for_file": false,
+        "com.intellij:app:BaseRefactoringSettings.rename_search_for_references_for_file": false,
+        "com.intellij.database:app:DatabaseSettings.enable-local-filter-by-default": false,
+        "com.intellij:app:HttpConfigurable.use_proxy_pac": true
+      }
+    },    
+    "vscode": {
+      "extensions": [
+        // theme and remote tools
+        "dracula-theme.theme-dracula",
+        "ms-vscode.remote-explorer",
+        "github.copilot",
+        // dbt
+        "butchland.vscode-dbt-bigquery-power-user",
+        "ms-python.python",
+        "ms-python.vscode-pylance"
+      ],
+      "settings": {
+        "terminal.integrated.profiles.linux": {
+          "bash": {
+            "path": "/bin/bash"
+          }
+        },
+        "git.enableSmartCommit": true,
+        "git.autofetch": true,
+        "git.confirmSync": false,
+        "editor.minimap.enabled": false,
+        "workbench.colorTheme": "Dracula",
+        "[jinja-sql]": {
+          "editor.defaultFormatter": "henriblancke.vscode-dbt-formatter"
+        },
+        "files.associations": {
+          "*.sql": "jinja-sql",
+          "*.yaml": "jinja-yaml",
+          "*.yml": "jinja-yaml"
+        },
+        "editor.quickSuggestions": {
+          "strings": true
+        },
+        "github.copilot.enable": {
+          "*": true,
+          "yaml": true,
+          "plaintext": false,
+          "markdown": false
+        }
+      }
+    }
+
+  },
+  "onCreateCommand": ".devcontainer/onCreateCommand.sh"
+//  "postCreateCommand": "echo 'postCreateCommand:"
+}

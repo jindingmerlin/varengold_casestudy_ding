@@ -1,0 +1,20 @@
+# https://docs.getdbt.com/reference/warehouse-profiles/bigquery-profile
+# https://docs.getdbt.com/reference/warehouse-setups/sqlite-setup
+
+config:
+    send_anonymous_usage_stats: False
+
+default:
+  outputs:
+    dev:
+      type: postgres
+      threads: 1
+      host: localhost
+      port: 5432
+      user: postgres
+      pass: postgres
+      dbname: postgres
+      schema: public
+      extensions:
+        - icu
+  target: dev

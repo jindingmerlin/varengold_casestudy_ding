@@ -1,93 +1,149 @@
-# DataAnalyst_CaseStudy
+# Case Study at Varengold Bank AG - Data Analyst
 
+## Introduction
 
+Dear applicant,
 
-## Getting started
+Thank you for taking your time and agreeing to work on a short case study for us.
 
-To make it easy for you to get started with GitLab, here's a list of recommended next steps.
+In this case study, we would like to go through typical concepts, task and challenges associated with data analysis,
+while keeping it closely related to your potential future working environment. In order not to take too much
+of your time, we have prepared this repository for you. We propose a folder structure and provide some initial code
+snippets as well as a database and one CSV file, that should get you going very quickly. Depending on your
+prior knowledge, we estimate a working effort of
+2h - 4h.
 
-Already a pro? Just edit this README.md and make it your own. Want to make it easy? [Use the template at the bottom](#editing-this-readme)!
+The goal of this test is to evaluate your understanding of SQL, dbt and data modeling concepts.
 
-## Add your files
+Once you feel ready - please not later than one day before your second interview - send us a link to your own
+repository. In the interview, you will guide us briefly through your work. Your participation is very much appreciated!
 
-- [ ] [Create](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#create-a-file) or [upload](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#upload-a-file) files
-- [ ] [Add files using the command line](https://docs.gitlab.com/topics/git/add_files/#add-files-to-a-git-repository) or push an existing Git repository with the following command:
+In case you have any problems, questions or feedback, please don't hesitate to approach us right away.
+
+Good luck and have fun,
+
+Your Varengold data team
+
+[Contact us](mailto:d.maas@varengold.de)
+
+### Prerequisites
+
+- Docker
+- Your favorite IDE
+- Git
+- PowerBI Client
+
+## Case Study
+
+We have a small, normalized data model that contains data about our customers, their accounts and loans, as well as
+their transactions in various currencies. The data is artificially and randomly generated. For our case study, we assume
+that the data comes from a source database every day and lands in our data warehouse (`postgres: raw`). We take this
+source
+and want to load it for our purposes into a reporting schema (`postgres: reporting`). We have started our work already (
+`./transformations/models/staging`). This is where we need your
+help...
+
+### Tasks:
+
+**Setup:**
+
+1. [ ] Please create a repository and commit this content (or clone and change remote)
+2. [ ] Start the devcontainers
+4. [ ] Set up PowerBI Desktop and configure data ingestion from the database container (
+   `localhost:5432 db/schema/user/pw=postgres`)
+
+> **⚠️ Important Note:** If you encounter any issues getting the devcontainer to run or if you get stuck with the setup,
+> please don't hesitate to contact us immediately. Docker and devcontainer usage is not part of the evaluation - we've
+> implemented this setup out of necessity to ensure all applicants have a consistent working environment.
+
+**Data Engineering (dbt):**
+
+In the `transformations` directory, you'll find a pre-build dbt project that resembles a production repository used for
+data engineering projects at Varengold. We would like to ask you to create a materialized reporting table that sums up
+all transactions in EUR per customer, account, branch and transactions_date. The table should be placed in a dedicated
+schema (like reporting or marts).
+
+- [ ] Implement a dbt model that creates a materialized table in the reporting schema
+- [ ] The model should sum up all transactions in EUR (Euro) per customer, account, branch and date
+- [ ] Use the provided exchange rate table for currency conversion across all dates
+- [ ] Include appropriate dbt tests for data quality validation
+
+**Business Intelligence Dashboard (PowerBI):**
+
+You've been asked to create a dashboard for the Branch Performance Manager, who needs to understand how different
+branches are performing in terms of customer transaction activity. They mentioned wanting to see 'the important numbers'
+broken down by branch and over time, and specifically asked about EUR equivalents since they deal with multiple
+currencies. They'll be presenting this to senior management next week.
+
+- [ ] Create a comprehensive Branch Performance Dashboard in PowerBI
+
+**Submission:**
+
+- [ ] Please send us a link to your repository with complete dbt project and PowerBI project files (`.pbip`)
+- [ ] Provide screenshots of key dashboard pages in your repository
+- [ ] Include dbt documentation output (docs generate)
+- [ ] Include a brief summary of your key findings and recommendations
+
+### Evaluation Criteria:
+
+- **Business Understanding:** Ability to translate data into business insights using appropriate visualizations
+- **Dashboard Design:** User experience, visual clarity, interactivity, and PowerBI best practices
+- **SQL/dbt Proficiency:** Query efficiency, correctness, and dbt best practices implementation
+- **PowerBI Proficiency:** Effective use of DAX, data modeling, and advanced PowerBI features
+- **Analytical Thinking:** Quality of insights and business recommendations
+- **Communication:** Clarity of presentation and storytelling with data
+
+### Business Context
+
+You're analyzing data for a multi-branch bank that:
+
+- Operates across multiple branches with different performance levels
+- Handles transactions in multiple currencies (requires EUR conversion)
+- Offers various account types and loan products
+- Serves customers across different age demographics
+- Needs to track performance metrics for management reporting
+- **Senior management prefers PowerBI dashboards for strategic decision-making**
+- **Data transformations must be version-controlled and documented using dbt**
+
+### Data Schema Overview
+
+The intermediate schema contains cleaned and processed tables:
+
+- **customers:** Customer demographics and branch assignments
+- **accounts:** Account information linked to customers
+- **transactions:** All transaction data with multi-currency support
+- **loans:** Loan portfolio with approval/rejection status
+- **fx_rates:** Exchange rates for currency conversion
+- **currencies:** Currency lookup table
+
+### ERD (DuckDB: intermediate schema)
+
+The entity-relationship diagram shows how the individual tables are related to each other.
+
+<img src="docs/erd.png">
+
+## Getting Started
+
+1. **Devcontainer Setup:** Get `.devcontainer/devcontainer.json` up and running
+   2**Data Transformation:** Create dbt models for data preparation and transformation
+   3**Understand the Business:** Review the Branch Performance Manager requirements
+   4**Build PowerBI Dashboards:** Create interactive, executive-ready dashboards using transformed data
+   5**Think Like an Analyst:** Focus on insights that drive business decisions
+   6**Document Your Work:** Use dbt docs and prepare to explain your analysis approach
+
+### dbt Project Structure:
 
 ```
-cd existing_repo
-git remote add origin http://gitlab.varengold.de/dmaas/dataanalyst_casestudy.git
-git branch -M main
-git push -uf origin main
+dbt_project/
+├── models/
+│   ├── staging/
+│   ├── intermediate/
+│   └── marts/
+├── tests/
+├── macros/
+└── docs/
 ```
 
-## Integrate with your tools
-
-- [ ] [Set up project integrations](http://gitlab.varengold.de/dmaas/dataanalyst_casestudy/-/settings/integrations)
-
-## Collaborate with your team
-
-- [ ] [Invite team members and collaborators](https://docs.gitlab.com/ee/user/project/members/)
-- [ ] [Create a new merge request](https://docs.gitlab.com/ee/user/project/merge_requests/creating_merge_requests.html)
-- [ ] [Automatically close issues from merge requests](https://docs.gitlab.com/ee/user/project/issues/managing_issues.html#closing-issues-automatically)
-- [ ] [Enable merge request approvals](https://docs.gitlab.com/ee/user/project/merge_requests/approvals/)
-- [ ] [Set auto-merge](https://docs.gitlab.com/user/project/merge_requests/auto_merge/)
-
-## Test and Deploy
-
-Use the built-in continuous integration in GitLab.
-
-- [ ] [Get started with GitLab CI/CD](https://docs.gitlab.com/ee/ci/quick_start/)
-- [ ] [Analyze your code for known vulnerabilities with Static Application Security Testing (SAST)](https://docs.gitlab.com/ee/user/application_security/sast/)
-- [ ] [Deploy to Kubernetes, Amazon EC2, or Amazon ECS using Auto Deploy](https://docs.gitlab.com/ee/topics/autodevops/requirements.html)
-- [ ] [Use pull-based deployments for improved Kubernetes management](https://docs.gitlab.com/ee/user/clusters/agent/)
-- [ ] [Set up protected environments](https://docs.gitlab.com/ee/ci/environments/protected_environments.html)
-
-***
-
-# Editing this README
-
-When you're ready to make this README your own, just edit this file and use the handy template below (or feel free to structure it however you want - this is just a starting point!). Thanks to [makeareadme.com](https://www.makeareadme.com/) for this template.
-
-## Suggestions for a good README
-
-Every project is different, so consider which of these sections apply to yours. The sections used in the template are suggestions for most open source projects. Also keep in mind that while a README can be too long and detailed, too long is better than too short. If you think your README is too long, consider utilizing another form of documentation rather than cutting out information.
-
-## Name
-Choose a self-explaining name for your project.
-
-## Description
-Let people know what your project can do specifically. Provide context and add a link to any reference visitors might be unfamiliar with. A list of Features or a Background subsection can also be added here. If there are alternatives to your project, this is a good place to list differentiating factors.
-
-## Badges
-On some READMEs, you may see small images that convey metadata, such as whether or not all the tests are passing for the project. You can use Shields to add some to your README. Many services also have instructions for adding a badge.
-
-## Visuals
-Depending on what you are making, it can be a good idea to include screenshots or even a video (you'll frequently see GIFs rather than actual videos). Tools like ttygif can help, but check out Asciinema for a more sophisticated method.
-
-## Installation
-Within a particular ecosystem, there may be a common way of installing things, such as using Yarn, NuGet, or Homebrew. However, consider the possibility that whoever is reading your README is a novice and would like more guidance. Listing specific steps helps remove ambiguity and gets people to using your project as quickly as possible. If it only runs in a specific context like a particular programming language version or operating system or has dependencies that have to be installed manually, also add a Requirements subsection.
-
-## Usage
-Use examples liberally, and show the expected output if you can. It's helpful to have inline the smallest example of usage that you can demonstrate, while providing links to more sophisticated examples if they are too long to reasonably include in the README.
-
-## Support
-Tell people where they can go to for help. It can be any combination of an issue tracker, a chat room, an email address, etc.
-
-## Roadmap
-If you have ideas for releases in the future, it is a good idea to list them in the README.
-
-## Contributing
-State if you are open to contributions and what your requirements are for accepting them.
-
-For people who want to make changes to your project, it's helpful to have some documentation on how to get started. Perhaps there is a script that they should run or some environment variables that they need to set. Make these steps explicit. These instructions could also be useful to your future self.
-
-You can also document commands to lint the code or run tests. These steps help to ensure high code quality and reduce the likelihood that the changes inadvertently break something. Having instructions for running tests is especially helpful if it requires external setup, such as starting a Selenium server for testing in a browser.
-
-## Authors and acknowledgment
-Show your appreciation to those who have contributed to the project.
-
-## License
-For open source projects, say how it is licensed.
-
-## Project status
-If you have run out of energy or time for your project, put a note at the top of the README saying that development has slowed down or stopped completely. Someone may choose to fork your project or volunteer to step in as a maintainer or owner, allowing your project to keep going. You can also make an explicit request for maintainers.
+Remember: The goal is not just to create dashboards, but to demonstrate your ability to extract meaningful business
+insights from data and communicate them effectively to stakeholders using industry-standard tools like PowerBI and dbt.
+Show proficiency in both technical data preparation (dbt/SQL) and business presentation (PowerBI).
