@@ -48,6 +48,7 @@ help...
 **Setup:**
 
 1. [ ] Please create a repository and commit this content (or clone and change remote)
+   - **Please note:** If your git is running on Windows, use `git clone <repository> --config core.autocrlf=input`
 2. [ ] Start the devcontainers
 4. [ ] Set up PowerBI Desktop and configure data ingestion from the database container (
    `localhost:5432 db/schema/user/pw=postgres`)
