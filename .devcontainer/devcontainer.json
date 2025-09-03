@@ -4,7 +4,7 @@
   "name": "Python 3 & PostgreSQL",
   "dockerComposeFile": "docker-compose.yml",
   "service": "casestudy",
-  "workspaceFolder": "/workspaces/data-analyst-casestudy",
+  "workspaceFolder": "/workspaces/dataanalyst_casestudy",
   // Features to add to the dev container. More info: https://containers.dev/features.
   // "features": {},
 
