@@ -125,11 +125,11 @@ The entity-relationship diagram shows how the individual tables are related to e
 ## Getting Started
 
 1. **Devcontainer Setup:** Get `.devcontainer/devcontainer.json` up and running
-   2**Data Transformation:** Create dbt models for data preparation and transformation
-   3**Understand the Business:** Review the Branch Performance Manager requirements
-   4**Build PowerBI Dashboards:** Create interactive, executive-ready dashboards using transformed data
-   5**Think Like an Analyst:** Focus on insights that drive business decisions
-   6**Document Your Work:** Use dbt docs and prepare to explain your analysis approach
+2. **Data Transformation:** Create dbt models for data preparation and transformation
+3. **Understand the Business:** Review the Branch Performance Manager requirements
+4. **Build PowerBI Dashboards:** Create interactive, executive-ready dashboards using transformed data
+5. **Think Like an Analyst:** Focus on insights that drive business decisions
+6. **Document Your Work:** Use dbt docs and prepare to explain your analysis approach
 
 ### dbt Project Structure:
 
