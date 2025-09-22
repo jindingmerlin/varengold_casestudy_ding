@@ -1,0 +1,19 @@
+version: 2
+
+models:
+  - name: transactions_eur_summary
+    description: "EUR transactions per customer/account/branch/date"
+    columns:
+      - name: customer_id
+        tests: [not_null]
+      - name: account_id
+        tests: [not_null]
+      - name: branch_id
+        tests: [not_null]
+      - name: transaction_date
+        tests: [not_null]
+      - name: total_eur
+        tests: [not_null]
+    tests:
+      - unique:
+          column_name: "customer_id || '|' || account_id || '|' || branch_id || '|' || transaction_date"

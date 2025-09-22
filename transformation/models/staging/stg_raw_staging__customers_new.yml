@@ -1,0 +1,10 @@
+version: 2
+
+models:
+  - name: stg_raw_staging__customers_new
+    description: "Staging customers with branch_id included from raw.customers"
+    columns:
+      - name: customer_id
+        tests: [not_null, unique]
+      - name: branch_id
+        tests: [not_null]
